@@ -18,10 +18,25 @@ const loadCategories = () =>{
 }
 
 
+// {category_id: '1001', category: 'Music'}
+
+
 //create displayCategories
 
-const displayCategories = (data) =>{
-    console.log(data)
+const displayCategories = (categories) =>{
+    //console.log(data)
+    const categoryContainer =  document.getElementById("catagories");
+    categories.forEach((item)=>{
+        console.log(item);
+
+        //create button
+        const button = document.createElement("button");
+        button.classList = "btn";
+        button.innerText = item.category;
+
+        //add button to category
+        categoryContainer.appendChild(button);
+    })
     
 }
 
