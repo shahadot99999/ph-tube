@@ -23,6 +23,16 @@ const loadCategories = () =>{
    .catch((error)=>console.log(error));
 }
 
+const loadCategoriesvidoes =(id)=>{
+    //alert(id);
+    
+   fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
+   //.then((res)=>console.log(res))
+   .then((res)=>res.json(res))
+  // .then((data)=>console.log(data.category))
+   .then((data)=>displayVideos(data.category))
+   .catch((error)=>console.log(error))
+}
 
 // const cardDemo = {
 //     "category_id": "1001",
@@ -58,7 +68,8 @@ const loadVidoes = () =>{
 
  const displayVideos = (videos)=>{
 
-    const vidoContent = document.getElementById("vedios");
+    const videoContainer = document.getElementById("vedios");
+    videoContainer.innerHTML = " ";
     videos.forEach((video)=>{
         console.log(video);
 
@@ -72,7 +83,7 @@ const loadVidoes = () =>{
              class = "h-full w-full object-cover"
              alt="Shoes" />
              ${
-                video.others.posted_date?.length == 0 ? "": `<span class="absolute right-2 bottom-2 bg-black rounded p-1 text-white">${getTimeString(video.others.posted_date)}</span>`
+                video.others.posted_date?.length == 0 ? "": `<span class="absolute text-xs right-2 bottom-2 bg-black rounded p-1 text-white">${getTimeString(video.others.posted_date)}</span>`
 
              }
              
@@ -93,7 +104,7 @@ const loadVidoes = () =>{
            </div>
            </div>
         `;
-        vidoContent.appendChild(card)
+        videoContainer.appendChild(card)
     });
     
  }
@@ -112,12 +123,23 @@ const displayCategories = (categories) =>{
         console.log(item);
 
         //create button
-        const button = document.createElement("button");
-        button.classList = "btn";
-        button.innerText = item.category;
+        // const button = document.createElement("button");
+        // button.classList = "btn";
+        // button.innerText = item.category;
+
+        const buttonContainer = document.createElement("div");
+        buttonContainer.innerHTML = 
+        `
+        <button onClick="loadCategoriesvidoes(${item.category_id})" class="btn">
+        ${item.category}
+        </button>
+        `
+
+
+        //button.onclick = alert("Hello");
 
         //add button to category
-        categoryContainer.appendChild(button);
+        categoryContainer.appendChild(buttonContainer);
     })
     
 }
