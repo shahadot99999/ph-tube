@@ -23,6 +23,15 @@ const loadCategories = () =>{
    .catch((error)=>console.log(error));
 }
 
+const removeActiveClass =()=>{
+    const buttons = document.getElementsByClassName("category-btn");
+    console.log(buttons);
+    for(let btn of buttons){
+        btn.classList.remove("active");
+    }
+
+}
+
 const loadCategoriesvidoes =(id)=>{
     //alert(id);
     
@@ -30,7 +39,15 @@ const loadCategoriesvidoes =(id)=>{
    //.then((res)=>console.log(res))
    .then((res)=>res.json(res))
   // .then((data)=>console.log(data.category))
-   .then((data)=>displayVideos(data.category))
+   //.then((data)=>displayVideos(data.category))
+   .then((data)=>{
+
+    removeActiveClass();
+     const activeBtn = document.getElementById(`btn-${id}`);
+     //console.log(activeBtn);
+     activeBtn.classList.add("active");
+    displayVideos(data.category);
+   })
    .catch((error)=>console.log(error))
 }
 
@@ -146,7 +163,8 @@ const displayCategories = (categories) =>{
         const buttonContainer = document.createElement("div");
         buttonContainer.innerHTML = 
         `
-        <button onClick="loadCategoriesvidoes(${item.category_id})" class="btn">
+        <button id="btn-${item.category_id}" onClick="loadCategoriesvidoes(${item.category_id})" 
+        class="btn category-btn">
         ${item.category}
         </button>
         `
