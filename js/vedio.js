@@ -12,6 +12,31 @@ function getTimeString(time){
     return `${hour} hour ${minute} minute ${remainingSecond} second ago`;
 }
 
+// function getTimeString(time) {
+//     const secondsInMinute = 60;
+//     const secondsInHour = 3600;
+//     const secondsInDay = 86400;
+//     const secondsInMonth = 30 * secondsInDay; // Approximate, as months vary in length
+//     const secondsInYear = 365 * secondsInDay; // Approximate, ignoring leap years
+
+//     const years = Math.floor(time / secondsInYear);
+//     time %= secondsInYear;
+
+//     const months = Math.floor(time / secondsInMonth);
+//     time %= secondsInMonth;
+
+//     const days = Math.floor(time / secondsInDay);
+//     time %= secondsInDay;
+
+//     const hours = Math.floor(time / secondsInHour);
+//     time %= secondsInHour;
+
+//     const minutes = Math.floor(time / secondsInMinute);
+//     const seconds = time % secondsInMinute;
+
+//     return `${years} year(s) ${months} month(s) ${days} day(s) ${hours} hour(s) ${minutes} minute(s) ${seconds} second(s) ago`;
+// }
+
 const loadCategories = () =>{
    // console.log("loadCategories created");
 
